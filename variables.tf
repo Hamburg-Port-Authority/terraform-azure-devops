@@ -35,43 +35,17 @@ variable "variable_group_name" {
 }
 
 
-variable "sp_client_id" {
-  type        = string
-  description = "The client-id from the app-registration."
-  sensitive   = true
-}
+variable "variables" {
+  type = map(object({
+    name      = string
+    value     = string
+    is_secret = bool
 
-variable "sp_client_secret" {
-  type        = string
-  description = "The client-secret from the app-registration."
-  sensitive   = true
-}
-variable "subscription_id" {
-  type        = string
-  description = "The subscription-id the resource are deployt over cicd."
-  sensitive   = true
-}
 
-variable "tenant_id" {
-  type        = string
-  description = "The tenant-id with the used subscription-id."
-  sensitive   = true
-}
+  }))
+  default = {}
 
-variable "identity_64" {
-  type        = string
-  description = "The identity is the private key and will be used to give flux-system access to gitrepo via ssh."
-  sensitive   = true
-}
-
-variable "identity_pub_64" {
-  type        = string
-  description = "The public identity is the public key added to a user in azure devops and will be used to give flux-system access to gitrepo via ssh."
-}
-
-variable "known_hosts" {
-  type        = string
-  description = "The known_hosts File is a client file containing all remotely connected known hosts, and the ssh client uses this file. This file authenticates for the client to the server they are connecting to. The known_hosts file contains the host public key for all known hosts."
+  description = "List of variables to configure variables in azure pipeline library group."
 }
 
 variable "pipeline_settings" {

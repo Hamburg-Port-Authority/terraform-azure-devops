@@ -10,51 +10,18 @@ resource "azuredevops_variable_group" "main" {
   description  = var.variable_group_description
   allow_access = true
 
-  variable {
-    name      = "ARM_CLIENT_ID"
-    value     = var.sp_client_id
-    is_secret = true
-  }
 
-  variable {
-    name      = "ARM_CLIENT_SECRET"
-    value     = var.sp_client_secret
-    is_secret = true
-  }
+  dynamic "variable" {
+    for_each = var.variables
 
-  variable {
-    name         = "ARM_TENANT_ID"
-    secret_value = var.tenant_id
-    is_secret    = true
 
-  }
+    content {
 
-  variable {
-    name         = "ARM_SUBSCRIPTION_ID"
-    secret_value = var.subscription_id
-    is_secret    = true
+      name      = variable.value.name
+      value     = variable.value.value
+      is_secret = variable.value.is_secret
 
-  }
-
-  variable {
-    name         = "identity64"
-    secret_value = var.identity_64
-    is_secret    = true
-
-  }
-
-  variable {
-    name         = "identityPub64"
-    secret_value = var.identity_pub_64
-    is_secret    = true
-
-  }
-
-  variable {
-    name         = "knownHosts"
-    secret_value = var.known_hosts
-    is_secret    = true
-
+    }
   }
 }
 
