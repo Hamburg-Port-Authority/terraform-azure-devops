@@ -50,14 +50,25 @@ variable "variables" {
 
 variable "pipeline_settings" {
 
-  type        = map(bool)
+  type = map(object({
+    enforce_job_scope                    = bool
+    enforce_referenced_repo_scoped_token = bool
+    publish_pipeline_metadata            = bool
+    enforce_settable_var                 = bool
+    status_badges_are_private            = bool
+
+
+
+  }))
   description = "Manages Pipeline Settings for Azure DevOps projects. The settings at the organization will override settings specified on the project."
   default = {
-    "enforce_job_scope"                    = false
-    "enforce_referenced_repo_scoped_token" = true
-    "publish_pipeline_metadata"            = false
-    "enforce_settable_var"                 = true
-    "status_badges_are_private"            = true
+    "default_config" = {
+      enforce_job_scope                    = false
+      enforce_referenced_repo_scoped_token = true
+      enforce_settable_var                 = false
+      publish_pipeline_metadata            = true
+      status_badges_are_private            = true
+    }
   }
 }
 

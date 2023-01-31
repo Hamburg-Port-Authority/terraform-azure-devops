@@ -11,15 +11,17 @@ resource "azuredevops_variable_group" "main" {
   allow_access = true
 
 
+
   dynamic "variable" {
     for_each = var.variables
+    iterator = item
 
 
     content {
 
-      name      = variable.value.name
-      value     = variable.value.value
-      is_secret = variable.value.is_secret
+      name      = item.value.name
+      value     = item.value.value
+      is_secret = item.value.is_secret
 
     }
   }
@@ -36,5 +38,7 @@ resource "azuredevops_project_pipeline_settings" "main" {
   enforce_settable_var                 = each.value.enforce_settable_var                 #Limit variables that can be set at queue time.
   status_badges_are_private            = each.value.status_badges_are_private            # Disable anonymous access to badges
 
-
+  depends_on = [
+    azuredevops_project.main
+  ]
 }
