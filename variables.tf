@@ -12,7 +12,7 @@ variable "project_description" {
 
 }
 
-variable "visibilty" {
+variable "visibility" {
 
   type        = string
   default     = "private"

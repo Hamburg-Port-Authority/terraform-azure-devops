@@ -1,7 +1,7 @@
 resource "azuredevops_project" "main" {
   name        = var.project_name
   description = var.project_description
-  visibility  = var.visibilty
+  visibility  = var.visibility
 }
 
 resource "azuredevops_variable_group" "main" {
