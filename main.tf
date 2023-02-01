@@ -51,13 +51,22 @@ resource "azuredevops_project_features" "main" {
     "testplans" = "disabled"
     "artifacts" = "disabled"
   }
+
+  depends_on = [
+    azuredevops_project.main
+  ]
 }
 
 
 resource "azuredevops_git_repository" "main" {
   project_id = azuredevops_project.main.id
-  name       = var.git_repository_name
+  for_each   = var.git_repositories
+  name       = each.value.name
   initialization {
     init_type = "Clean"
   }
+
+  depends_on = [
+    azuredevops_project.main
+  ]
 }

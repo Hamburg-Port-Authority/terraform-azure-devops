@@ -78,6 +78,14 @@ variable "pipeline_settings" {
   }
 }
 
+variable "git_repositories" {
+
+  type = map(object({
+    name = string
+  }))
+  description = "Creates multiple initial empty gitrepos."
+}
+
 variable "tags" {
   type        = map(string)
   description = "Defines the default tags.  Some tags like owner are enforced by Azure policies. "
