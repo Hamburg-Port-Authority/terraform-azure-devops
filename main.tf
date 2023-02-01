@@ -43,10 +43,21 @@ resource "azuredevops_project_pipeline_settings" "main" {
   ]
 }
 
-resource "azuredevops_project_features" "example-features" {
+resource "azuredevops_project_features" "main" {
   project_id = azuredevops_project.main.id
   features = {
+
+    "boards"    = "disabled"
     "testplans" = "disabled"
     "artifacts" = "disabled"
+  }
+}
+
+
+resource "azuredevops_git_repository" "main" {
+  project_id = azuredevops_project.main.id
+  name       = var.git_repository_name
+  initialization {
+    init_type = "Clean"
   }
 }

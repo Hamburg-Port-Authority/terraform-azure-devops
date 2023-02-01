@@ -34,6 +34,12 @@ variable "variable_group_name" {
 
 }
 
+variable "git_repository_name" {
+
+  type        = string
+  description = "The name of the git repository"
+}
+
 
 variable "variables" {
   type = map(object({
