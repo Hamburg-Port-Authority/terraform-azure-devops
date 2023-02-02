@@ -59,9 +59,10 @@ resource "azuredevops_project_features" "main" {
 
 
 resource "azuredevops_git_repository" "main" {
-  project_id = azuredevops_project.main.id
-  for_each   = var.git_repositories
-  name       = each.value.name
+  project_id     = azuredevops_project.main.id
+  for_each       = var.git_repositories
+  name           = each.value.name
+  default_branch = each.value.default_branch
   initialization {
     init_type = "Clean"
   }

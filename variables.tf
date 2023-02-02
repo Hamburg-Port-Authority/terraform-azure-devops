@@ -74,7 +74,8 @@ variable "pipeline_settings" {
 variable "git_repositories" {
 
   type = map(object({
-    name = string
+    name           = string
+    default_branch = string
   }))
   description = "Creates multiple initial empty gitrepos."
 }
