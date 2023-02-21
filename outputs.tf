@@ -9,11 +9,11 @@ output "azuredevops_project_id" {
 }
 
 output "variable_group_name" {
-  value       = azuredevops_variable_group.main.name
+  value       = azuredevops_variable_group.main[0].name
   description = "The name of the Variable Group."
 }
 
 output "variabe_group_id" {
-  value       = azuredevops_variable_group.main.id
+  value       = azuredevops_variable_group.main[0].id
   description = "The ID of the Variable Group."
 }

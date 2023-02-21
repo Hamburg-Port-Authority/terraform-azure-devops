@@ -34,6 +34,17 @@ variable "variable_group_name" {
 
 }
 
+variable "enable_repository" {
+  type        = bool
+  default     = false
+  description = "Allow you create repository if you want create a project with a repository"
+}
+variable "enable_variable_group" {
+  type        = bool
+  default     = true
+  description = ""
+}
+
 variable "variables" {
   type = map(object({
     name      = string

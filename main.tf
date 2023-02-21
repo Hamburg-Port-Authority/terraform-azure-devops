@@ -5,6 +5,7 @@ resource "azuredevops_project" "main" {
 }
 
 resource "azuredevops_variable_group" "main" {
+  count        = var.enable_variable_group ? 1 : 0
   project_id   = azuredevops_project.main.id
   name         = var.variable_group_name
   description  = var.variable_group_description
@@ -60,7 +61,7 @@ resource "azuredevops_project_features" "main" {
 
 resource "azuredevops_git_repository" "main" {
   project_id     = azuredevops_project.main.id
-  for_each       = var.git_repositories
+  for_each       = var.enable_repository ? var.git_repositories : {}
   name           = each.value.name
   default_branch = each.value.default_branch
   initialization {
