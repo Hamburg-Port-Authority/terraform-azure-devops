@@ -9,11 +9,14 @@ output "azuredevops_project_id" {
 }
 
 output "variable_group_name" {
-  value       = azuredevops_variable_group.main[0].name
+  value       = join("", azuredevops_variable_group.main.*.name)
   description = "The name of the Variable Group."
 }
 
 output "variabe_group_id" {
-  value       = azuredevops_variable_group.main[0].id
+  value       = join("", azuredevops_variable_group.main.*.id)
   description = "The ID of the Variable Group."
 }
+
+
+# length(random_pet.this) > 0 ? random_pet.this[0].id : null
