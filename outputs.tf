@@ -17,6 +17,3 @@ output "variabe_group_id" {
   value       = join("", azuredevops_variable_group.main.*.id)
   description = "The ID of the Variable Group."
 }
-
-
-# length(random_pet.this) > 0 ? random_pet.this[0].id : null
