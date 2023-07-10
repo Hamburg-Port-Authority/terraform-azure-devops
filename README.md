@@ -8,7 +8,7 @@ The module is used to deploy azure devops project and variable groups over terra
 
     module "devops" {
 
-         source = "github.com/la-cc/terraform-azure-devops?ref=1.0.0"
+         source = "github.com/Hamburg-Port-Authority/terraform-azure-devops?ref=1.0.1"
 
          project_name           = var.project_name
 
