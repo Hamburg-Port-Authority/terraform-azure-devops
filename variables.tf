@@ -75,7 +75,7 @@ variable "pipeline_settings" {
     "default_config" = {
       enforce_job_scope                    = false
       enforce_referenced_repo_scoped_token = true
-      enforce_settable_var                 = false
+      enforce_settable_var                 = true
       publish_pipeline_metadata            = true
       status_badges_are_private            = true
     }
